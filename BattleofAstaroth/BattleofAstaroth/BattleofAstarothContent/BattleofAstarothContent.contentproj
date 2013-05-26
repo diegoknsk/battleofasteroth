@@ -71,6 +71,20 @@
     <Folder Include="Imagens\Sprites\" />
     <Folder Include="Musicas\" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Personagens\Nave1.png">
+      <Name>Nave1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Efeitos\tiro01.png">
+      <Name>tiro01</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -114,10 +114,14 @@
     <Compile Include="Componentes\Telas\TelaInicial.cs" />
     <Compile Include="Componentes\Telas\TelaJogo.cs" />
     <Compile Include="Componentes\Telas\TelaPause.cs" />
+    <Compile Include="Personagens\Personagem.cs" />
+    <Compile Include="Personagens\PersonagemJogador.cs" />
+    <Compile Include="Personagens\Tiro.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Utilidades\TextoJogo.cs" />
+    <Compile Include="Utilidades\Util.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

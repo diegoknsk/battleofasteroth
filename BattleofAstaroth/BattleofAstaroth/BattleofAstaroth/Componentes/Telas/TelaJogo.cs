@@ -7,10 +7,13 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
 using BattleofAstaroth.Componentes.Gerenciamento;
+using BattleofAstaroth.Personagens;
 
 namespace BattleofAstaroth.Componentes.Telas {
     //NESTA CLASSE ONDE DESENVOLVEREMOS TODA A LOGICA DO JOGO, SEM SE PREOCUPAR COM AS DEMAIS TELAS
     public class TelaJogo : Tela {
+        private PersonagemJogador personagemJogador;
+
         public TelaJogo(Game jogo, SpriteFont fontePequena, SpriteFont fonteMedia)
             : base(jogo) {
 
@@ -32,6 +35,10 @@ namespace BattleofAstaroth.Componentes.Telas {
                 Nucleo nucleo = (Nucleo)Game.Services.GetService(typeof(Nucleo));
                 nucleo.telaNova = TelasJogoEnum.TelaPause;
             }
+            personagemJogador.Atualiza();
+
+         
+            
             base.Update(gameTime);
         }
 
@@ -42,7 +49,7 @@ namespace BattleofAstaroth.Componentes.Telas {
 
             fonte = content.Load<SpriteFont>("Fontes/FontePequena");
             fonteMedia = content.Load<SpriteFont>("Fontes/FonteMedia");
-
+            personagemJogador = new PersonagemJogador(new Vector2(0, -1), new Vector2(350, 500), new Point(55, 117), content.Load<Texture2D>("Personagens/Nave1"), content.Load<Texture2D>("Efeitos/tiro01"));
             base.LoadContent();
 
         }
@@ -51,7 +58,7 @@ namespace BattleofAstaroth.Componentes.Telas {
             SpriteBatch sBatch = (SpriteBatch)Game.Services.GetService(typeof(SpriteBatch));
             sBatch.Draw(fundo, new Rectangle(0, 0, jogo.Window.ClientBounds.Width, jogo.Window.ClientBounds.Height), Color.White);           
             sBatch.DrawString(fonte, "Tela jogo", new Vector2(0, 0), Color.White);
-          
+            personagemJogador.Desenha(sBatch);
             base.Draw(gameTime);
         }
     }
