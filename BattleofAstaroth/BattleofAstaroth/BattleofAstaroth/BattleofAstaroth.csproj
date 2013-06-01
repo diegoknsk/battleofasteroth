@@ -114,6 +114,7 @@
     <Compile Include="Componentes\Telas\TelaInicial.cs" />
     <Compile Include="Componentes\Telas\TelaJogo.cs" />
     <Compile Include="Componentes\Telas\TelaPause.cs" />
+    <Compile Include="Personagens\Inimigo.cs" />
     <Compile Include="Personagens\Personagem.cs" />
     <Compile Include="Personagens\PersonagemJogador.cs" />
     <Compile Include="Personagens\Tiro.cs" />

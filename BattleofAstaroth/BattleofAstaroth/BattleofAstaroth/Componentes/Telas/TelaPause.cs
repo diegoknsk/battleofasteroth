@@ -37,7 +37,7 @@ namespace BattleofAstaroth.Componentes.Telas {
         protected override void LoadContent() {
 
             ContentManager content = this.Game.Content;
-            fundo = content.Load<Texture2D>("Imagens/Fundo/FundoTelaInicial");
+            fundo = content.Load<Texture2D>("Imagens/Fundo/Pause");
 
             fonte = content.Load<SpriteFont>("Fontes/FontePequena");
             fonteMedia = content.Load<SpriteFont>("Fontes/FonteMedia");

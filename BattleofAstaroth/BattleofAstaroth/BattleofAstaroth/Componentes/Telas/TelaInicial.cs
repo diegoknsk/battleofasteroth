@@ -50,11 +50,11 @@ namespace BattleofAstaroth.Componentes.Telas {
 
             ContentManager content = this.Game.Content;
             //musicaFundo = content.Load<Song>("Sons/Fundo/MusicaTelaCreditos");           
-            fundo = content.Load<Texture2D>("Imagens/Fundo/FundoTelaInicial");
+            fundo = content.Load<Texture2D>("Imagens/Fundo/Menu");
             imgBotao = content.Load<Texture2D>("Imagens/Botoes/btnC");
             fonte = content.Load<SpriteFont>("Fontes/FonteMedia");
             //btnCredito = new Botao(imgBotao, new Point(100, 380), new Point(200, 100), "Créditos", Color.White, Color.Gray, fonte, Color.Black);
-            btnIniciarEnredo = new Botao(imgBotao, new Point(500, 380), new Point(200, 100), "Iniciar", Color.White, Color.Gray, fonte, Color.Black);
+            btnIniciarEnredo = new Botao(imgBotao, new Point(320, 380), new Point(200, 100), "Iniciar", Color.White, Color.Red, fonte, Color.Black);
             base.LoadContent();
         }
 
@@ -63,7 +63,7 @@ namespace BattleofAstaroth.Componentes.Telas {
             SpriteBatch sBatch = (SpriteBatch)Game.Services.GetService(typeof(SpriteBatch));
         
             sBatch.Draw(fundo, new Rectangle(0, 0, jogo.Window.ClientBounds.Width , jogo.Window.ClientBounds.Height), Color.White);
-            sBatch.DrawString(fonte, "Tela inicial", new Vector2(0, 0), Color.White); 
+            sBatch.DrawString(fonte, "", new Vector2(0, 0), Color.White); 
             btnIniciarEnredo.Desenhar(sBatch);
             
             base.Draw(gameTime);

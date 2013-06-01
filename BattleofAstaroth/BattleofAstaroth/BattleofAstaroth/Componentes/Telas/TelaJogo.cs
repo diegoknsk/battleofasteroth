@@ -13,7 +13,8 @@ namespace BattleofAstaroth.Componentes.Telas {
     //NESTA CLASSE ONDE DESENVOLVEREMOS TODA A LOGICA DO JOGO, SEM SE PREOCUPAR COM AS DEMAIS TELAS
     public class TelaJogo : Tela {
         private PersonagemJogador personagemJogador;
-
+        Inimigo inimigo;
+       
         public TelaJogo(Game jogo, SpriteFont fontePequena, SpriteFont fonteMedia)
             : base(jogo) {
 
@@ -36,6 +37,13 @@ namespace BattleofAstaroth.Componentes.Telas {
                 nucleo.telaNova = TelasJogoEnum.TelaPause;
             }
             personagemJogador.Atualiza();
+            inimigo.Direcao = new Vector2(1.0f, 0.0f);
+            inimigo.Atualiza();
+            if (inimigo.areaColidir().Intersects(personagemJogador.RetanguloNaTela))
+            {
+                inimigo.Vivo = false;
+            }
+
 
          
             
@@ -45,13 +53,14 @@ namespace BattleofAstaroth.Componentes.Telas {
         protected override void LoadContent() {
 
             ContentManager content = this.Game.Content;
-            fundo = content.Load<Texture2D>("Imagens/Fundo/FundoTelaInicial");
-
+            fundo = content.Load<Texture2D>("Imagens/Fundo/Cenário");
+            
             fonte = content.Load<SpriteFont>("Fontes/FontePequena");
             fonteMedia = content.Load<SpriteFont>("Fontes/FonteMedia");
-            personagemJogador = new PersonagemJogador(new Vector2(0, -1), new Vector2(350, 500), new Point(55, 117), content.Load<Texture2D>("Personagens/Nave1"), content.Load<Texture2D>("Efeitos/tiro01"));
+            personagemJogador = new PersonagemJogador(new Vector2(0, -1), new Vector2(450,550), new Point(95, 100), content.Load<Texture2D>("Personagens/Personagem"), content.Load<Texture2D>("Efeitos/Flecha"));
+            inimigo= new Inimigo( new Vector2(-20.0f,200.0f), new Point ( 55, 117), content.Load<Texture2D>("Personagens/Nave1"));
             base.LoadContent();
-
+           
         }
 
         public override void Draw(GameTime gameTime) {
@@ -59,6 +68,10 @@ namespace BattleofAstaroth.Componentes.Telas {
             sBatch.Draw(fundo, new Rectangle(0, 0, jogo.Window.ClientBounds.Width, jogo.Window.ClientBounds.Height), Color.White);           
             sBatch.DrawString(fonte, "Tela jogo", new Vector2(0, 0), Color.White);
             personagemJogador.Desenha(sBatch);
+          for (int i = 0; i < 20; i++) {
+                   inimigo.Desenhar(sBatch);
+         
+            }
             base.Draw(gameTime);
         }
     }
