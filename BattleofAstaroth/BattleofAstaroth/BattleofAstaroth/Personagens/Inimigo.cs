@@ -47,7 +47,14 @@ namespace BattleofAstaroth.Personagens
 
          }
 
-
+         public void GeraInimigo()
+         {
+             Inimigo inimigo = new Inimigo(new Vector2 (400,200),new Point(93,129),SpritePersonagem);
+             Direcao = new Vector2(3.0f, 0.0f);
+             
+             inimigosGerados.Add(inimigo);
+         }
+        
         
     }
 }

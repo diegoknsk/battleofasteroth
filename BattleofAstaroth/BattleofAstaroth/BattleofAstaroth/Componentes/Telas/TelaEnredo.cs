@@ -81,9 +81,9 @@ namespace BattleofAstaroth.Componentes.Telas {
             foreach (string linhaTexto in listaTextos) {
                 sBatch.DrawString(fonte, linhaTexto, novaPos, cor);
                 novaPos = new Vector2(novaPos.X, novaPos.Y + 30);
+            btnVoltar.Desenhar(sBatch);
             }
             btnAvancar.Desenhar(sBatch);
-            btnVoltar.Desenhar(sBatch);
             base.Draw(gameTime);
         }
     }

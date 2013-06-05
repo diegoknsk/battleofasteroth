@@ -39,14 +39,19 @@ namespace BattleofAstaroth.Componentes.Telas {
             personagemJogador.Atualiza();
             inimigo.Direcao = new Vector2(1.0f, 0.0f);
             inimigo.Atualiza();
-            if (inimigo.areaColidir().Intersects(personagemJogador.RetanguloNaTela))
+            foreach ( Tiro tiro in personagemJogador.listaTirosNoJogo)
             {
-                inimigo.Vivo = false;
+                if (inimigo.areaColidir().Intersects(tiro.RetanguloNaTela()))
+                {
+                    tiro.StatusTiro = false;
+                    inimigo.Vivo = false;
+                    inimigo.Velocidade = 200000.0f;
+
+                }
             }
 
-
          
-            
+            //vai filhao \o/
             base.Update(gameTime);
         }
 
@@ -57,8 +62,9 @@ namespace BattleofAstaroth.Componentes.Telas {
             
             fonte = content.Load<SpriteFont>("Fontes/FontePequena");
             fonteMedia = content.Load<SpriteFont>("Fontes/FonteMedia");
-            personagemJogador = new PersonagemJogador(new Vector2(0, -1), new Vector2(450,550), new Point(95, 100), content.Load<Texture2D>("Personagens/Personagem"), content.Load<Texture2D>("Efeitos/Flecha"));
-            inimigo= new Inimigo( new Vector2(-20.0f,200.0f), new Point ( 55, 117), content.Load<Texture2D>("Personagens/Nave1"));
+            personagemJogador = new PersonagemJogador(new Vector2(0, -1), new Vector2(430,570), new Point(95, 100), content.Load<Texture2D>("Personagens/Personagem"), content.Load<Texture2D>("Efeitos/Flecha"),true,false);
+ 
+            inimigo= new Inimigo( new Vector2(-20.0f,200.0f), new Point ( 55, 117), content.Load<Texture2D>("Personagens/Orc"));
             base.LoadContent();
            
         }
@@ -68,10 +74,10 @@ namespace BattleofAstaroth.Componentes.Telas {
             sBatch.Draw(fundo, new Rectangle(0, 0, jogo.Window.ClientBounds.Width, jogo.Window.ClientBounds.Height), Color.White);           
             sBatch.DrawString(fonte, "Tela jogo", new Vector2(0, 0), Color.White);
             personagemJogador.Desenha(sBatch);
-          for (int i = 0; i < 20; i++) {
-                   inimigo.Desenhar(sBatch);
+            if (inimigo.Vivo==true)
+            inimigo.Desenhar(sBatch);
          
-            }
+            
             base.Draw(gameTime);
         }
     }

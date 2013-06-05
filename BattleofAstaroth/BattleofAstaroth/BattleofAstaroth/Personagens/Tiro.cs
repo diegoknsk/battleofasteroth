@@ -17,6 +17,7 @@ namespace BattleofAstaroth.Personagens {
         public int VelocidadeTiro { get; set; }
         public Point TamanhoTiro { get; set; }
         public bool StatusTiro  { get; set; } // se true se movimenta, se false, 
+        
 
         public Tiro(Texture2D textura, Vector2 posicao, Vector2 direcao, float rotacao, int velocidadeTiro, Point tamanhoTiro) {
             this.SpriteTiro = textura;
@@ -26,6 +27,7 @@ namespace BattleofAstaroth.Personagens {
             VelocidadeTiro = velocidadeTiro;
             TamanhoTiro = tamanhoTiro;
             StatusTiro = true;
+         
         }
 
         public void Atualiza() {
@@ -35,7 +37,7 @@ namespace BattleofAstaroth.Personagens {
             //} else {
             //    vetorMovimento = new Vector2(-2, 2);
             //}
-            Posicao += Vector2.Multiply(Direcao, vetorMovimento);
+            Posicao += Vector2.Multiply(Direcao, vetorMovimento) * 3;
             if (Posicao.X > Util.TamanhoTela.X || Posicao.X < 0 || Posicao.Y > Util.TamanhoTela.Y || Posicao.Y < 0) { //se o tiro está fora da tela, terá o status setado como false
                 StatusTiro = false;
             }
@@ -44,10 +46,10 @@ namespace BattleofAstaroth.Personagens {
         public void Desenha(SpriteBatch sBatch) {
             sBatch.Draw(SpriteTiro, Posicao, null, Color.White, Rotacao, new Vector2(TamanhoTiro.X / 2, TamanhoTiro.Y / 2), Vector2.One, SpriteEffects.None, 0);
         }
-        public Rectangle RetanguloNaTela {
-            get {
-                return new Rectangle((int)Posicao.X, (int)Posicao.Y, TamanhoTiro.X, TamanhoTiro.Y);
+        public Rectangle RetanguloNaTela() {
+            
+                return new Rectangle((int)Posicao.X, (int)Posicao.Y, TamanhoTiro.X, TamanhoTiro.Y-(90/100*TamanhoTiro.Y));
             }
         }
     }
-}
+
